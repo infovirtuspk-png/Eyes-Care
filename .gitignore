@@ -45,9 +45,9 @@ tmp/
 temp/
 *.tmp
 
-# Assets (if using placeholder assets)
-src/renderer/assets/icons/*.png
-src/renderer/assets/icons/*.ico
-src/renderer/assets/icons/*.jpg
+# Assets (keep essential icons, ignore placeholders)
+# src/renderer/assets/icons/*.png
+# src/renderer/assets/icons/*.ico
+# src/renderer/assets/icons/*.jpg
 src/renderer/assets/images/*
 src/renderer/assets/sounds/*
