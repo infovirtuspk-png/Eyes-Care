@@ -4,7 +4,7 @@
 
 **Professional Offline Eye-Care, Screen-Protection, Break-Management, and Background Productivity Utility for Windows 10 & 11**
 
-![Eyes Care Banner](src/renderer/assets/icons/icon.png)
+![Eyes Care Banner](https://raw.githubusercontent.com/infovirtuspk-png/Eyes-Care/master/src/renderer/assets/icons/icon.png)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Platform: Windows](https://img.shields.io/badge/Platform-Windows-0078D4?style=flat&logo=windows)](https://www.microsoft.com/windows)
@@ -14,7 +14,6 @@
 [![Stars](https://img.shields.io/github/stars/infovirtuspk-png/Eyes-Care?style=social)](https://github.com/infovirtuspk-png/Eyes-Care)
 
 [![Download Eyes Care](https://img.shields.io/badge/Download-Setup.exe-28a745?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/infovirtuspk-png/Eyes-Care/releases/download/1.0.0/Eyes.Care-Setup-1.0.0-x64.exe)
-[![Get it from Microsoft Store](https://img.shields.io/badge/Microsoft_Store-Get_It-0089D6?style=for-the-badge&logo=microsoft)](https://www.microsoft.com/store)
 
 **🚀 Protect your eyes • ⚡ Boost productivity • 🔒 100% Offline • 🎯 Zero tracking**
 
