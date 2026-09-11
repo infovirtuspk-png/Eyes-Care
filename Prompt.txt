@@ -1,0 +1,3060 @@
+You are a Senior Desktop Software Architect, Windows Native Integration Engineer, Electron Engineer, Node.js Engineer, SQLite Database Engineer, UI/UX Designer, QA Engineer, Security Engineer, and Performance Optimization Engineer.
+
+Your task is to DESIGN, ARCHITECT, DEVELOP, TEST, DEBUG, OPTIMIZE, and PACKAGE a complete production-quality Windows desktop application named:
+
+============================================================
+                        EYES CARE
+============================================================
+
+Eyes Care is a professional offline eye-care, screen-protection,
+break-management, focus, productivity, display-control, automation,
+and background-system utility for Windows 10 and Windows 11.
+
+IMPORTANT:
+This is NOT a UI prototype.
+This is NOT a static HTML mockup.
+This is NOT a simulated application.
+
+Every visible control must be connected to real functionality.
+
+The final result must be a complete installable Windows desktop
+application with a real background backend, real SQLite persistence,
+real system-tray integration, real timers, real Windows startup,
+real monitor detection, real display-control functionality where
+supported, real automation, real focus overlays, real break
+management, real logging, and real crash recovery.
+
+============================================================
+1. CORE TECHNOLOGY REQUIREMENTS
+============================================================
+
+Primary stack:
+
+- Electron
+- Node.js
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- SQLite
+- Electron IPC
+- Windows native APIs where required
+- Native Node.js addon/helper executable where required
+- Windows PowerShell/C++/C# native bridge only when technically
+  necessary for functionality that Electron/Node cannot reliably
+  provide
+
+Do NOT use:
+
+- Firebase
+- Cloudinary
+- Supabase
+- MongoDB cloud
+- MySQL server
+- Remote APIs
+- REST APIs
+- WebSockets
+- Online authentication
+- Cloud synchronization
+- AI APIs
+- Hugging Face
+- Google APIs
+- Third-party online services
+
+The application must work with Wi-Fi disabled.
+
+============================================================
+2. OFFLINE-FIRST REQUIREMENT
+============================================================
+
+Eyes Care must be 100% functional offline.
+
+The application must NOT require:
+
+- Internet
+- Account
+- Email
+- Cloud server
+- Remote database
+- Online license validation
+- Online configuration
+- Online API
+- Remote analytics
+
+All settings and application data must remain locally on the user's
+Windows computer.
+
+Use SQLite for persistent application configuration.
+
+Local filesystem may be used for:
+
+- Logs
+- Backups
+- Imported/exported settings
+- Local wallpapers
+- Local sounds
+- Crash reports
+- Diagnostic files
+
+Never transmit user data anywhere.
+
+============================================================
+3. IMPORTANT REFERENCE UI
+============================================================
+
+The user has provided a reference screenshot of CareUEyes.
+
+Use the attached screenshot ONLY as a visual/UX reference.
+
+The reference main window is approximately:
+
+730 × 500 pixels.
+
+The new application must be named:
+
+                    EYES CARE
+
+Do NOT copy:
+
+- CareUEyes logo
+- CareUEyes branding
+- CareUEyes proprietary assets
+- Copyrighted artwork
+- Proprietary source code
+- Trademarked visual identity
+
+Create an original Eyes Care identity while preserving the same
+general compact desktop UX philosophy:
+
+- Compact sidebar
+- Dark modern interface
+- Cyan/teal accent
+- Compact controls
+- Large sliders
+- Preset buttons
+- Minimal visual clutter
+- Professional desktop utility appearance
+- Same overall visual density
+- Similar 730×500 main-window proportions
+
+The goal is a familiar compact eye-care utility experience,
+NOT a direct trademark/asset/code clone.
+
+============================================================
+4. MAIN WINDOW
+============================================================
+
+Default main window:
+
+Width: 730px
+Height: 500px
+
+Target:
+
+730 × 500
+
+Minimum:
+
+730 × 500
+
+Keep the main dashboard compact.
+
+Recommended:
+
+- Fixed-size main dashboard
+- No unnecessary maximize button
+- Optional resizable advanced windows
+- Frameless custom title bar if stable
+- Native Windows behavior where possible
+
+The application must feel like a native Windows utility.
+
+============================================================
+5. MAIN APPLICATION LAYOUT
+============================================================
+
+Create:
+
+------------------------------------------------------------
+TOP TITLE BAR
+------------------------------------------------------------
+
+Left:
+
+[Original Eyes Care Eye Icon] Eyes Care
+
+Right:
+
+Help
+Feedback/Info
+Minimize
+Close
+
+------------------------------------------------------------
+LEFT SIDEBAR
+------------------------------------------------------------
+
+Approximately 145px wide.
+
+Menu:
+
+1. Display
+2. Break
+3. Focus
+4. MagicX
+5. Options
+6. About
+7. Activate
+
+Active menu item:
+
+- Teal/cyan background
+- Rounded corners
+- White icon
+- White text
+- Smooth transition
+
+------------------------------------------------------------
+MAIN CONTENT
+------------------------------------------------------------
+
+Content changes based on selected sidebar module.
+
+============================================================
+6. DISPLAY MODULE
+============================================================
+
+Display is the primary module.
+
+The Display page must contain:
+
+1. Color Temperature
+2. Brightness
+3. Reset
+4. Auto Day/Night
+5. Day/Night controls
+6. Display profiles/presets
+7. Multi-monitor support
+8. Real-time display updates
+
+------------------------------------------------------------
+COLOR TEMPERATURE
+------------------------------------------------------------
+
+Create a large horizontal slider.
+
+Range:
+
+1000K → 10000K
+
+Display the current value above/near the slider.
+
+Example:
+
+5000K
+
+Labels:
+
+Warm                         Cool
+
+Use smooth adjustment.
+
+Do not make the slider purely visual.
+
+It must communicate with the actual display/color-control layer.
+
+------------------------------------------------------------
+BRIGHTNESS
+------------------------------------------------------------
+
+Horizontal slider:
+
+0% → 100%
+
+Labels:
+
+Dimmer                       Brighter
+
+Current percentage must be displayed.
+
+Support:
+
+- Mouse
+- Keyboard arrows
+- Mouse wheel where appropriate
+- Reset
+- Presets
+- Multi-monitor control
+
+Do NOT write SQLite on every slider movement.
+
+Use:
+
+UI movement
+→ live display update
+→ debounce
+→ SQLite persistence
+
+------------------------------------------------------------
+RESET
+------------------------------------------------------------
+
+Create a reset icon/button.
+
+Reset should restore the configured default:
+
+Default brightness:
+100%
+
+Default temperature:
+6500K
+
+These defaults must themselves be configurable.
+
+============================================================
+7. REAL WINDOWS DISPLAY CONTROL
+============================================================
+
+THIS IS ONE OF THE MOST IMPORTANT REQUIREMENTS.
+
+Do NOT fake brightness or temperature changes by simply changing
+the CSS of the Eyes Care window.
+
+Eyes Care must control the actual Windows display environment.
+
+Implement a native Display Control Engine.
+
+Architecture:
+
+Electron
+    ↓
+Node.js
+    ↓
+Secure IPC
+    ↓
+Display Manager
+    ↓
+Windows Native Layer
+
+The implementation must support multiple methods depending on the
+hardware:
+
+1. Windows display APIs
+2. DDC/CI where supported
+3. Gamma ramp/color LUT where appropriate
+4. Software color/filter overlay as fallback where hardware control
+   is unavailable
+
+The application must detect capabilities.
+
+For example:
+
+Monitor supports hardware brightness:
+    → use hardware brightness
+
+Monitor does not support hardware brightness:
+    → use supported software/gamma approach
+
+Color temperature may require gamma/color LUT transformation.
+
+DO NOT claim that all monitors support hardware temperature control.
+
+Build a capability detection system.
+
+Example:
+
+Monitor 1:
+Hardware Brightness: YES
+DDC/CI: YES
+Gamma Control: YES
+
+Monitor 2:
+Hardware Brightness: NO
+DDC/CI: NO
+Gamma Control: YES
+
+The UI should adapt accordingly.
+
+============================================================
+8. DISPLAY ENGINE
+============================================================
+
+Create:
+
+DisplayEngine
+
+Responsibilities:
+
+- Detect monitors
+- Detect monitor IDs
+- Detect monitor names
+- Detect capabilities
+- Get brightness
+- Set brightness
+- Get temperature
+- Set temperature
+- Apply profile
+- Restore profile
+- Reset display
+- Apply smooth transition
+- Handle monitor connection changes
+- Handle monitor disconnection
+- Handle sleep/wake
+- Handle display configuration changes
+
+Functions conceptually:
+
+getMonitors()
+getMonitorCapabilities()
+getBrightness()
+setBrightness()
+getTemperature()
+setTemperature()
+applyProfile()
+restoreProfile()
+resetDisplay()
+reinitializeDisplays()
+
+============================================================
+9. AUTO DAY/NIGHT SYSTEM
+============================================================
+
+Implement a complete real-time Auto Day/Night Engine.
+
+This is a CORE FEATURE.
+
+UI:
+
+Auto Day/Night [ ON/OFF ]
+
+Modes:
+
+1. Automatic
+2. Manual Schedule
+3. Sunrise/Sunset
+4. Disabled
+
+------------------------------------------------------------
+DAY PROFILE
+------------------------------------------------------------
+
+User can configure:
+
+Day brightness
+Day temperature
+Day profile
+
+Example:
+
+07:00
+→ Day
+→ 6500K
+→ 100%
+
+------------------------------------------------------------
+NIGHT PROFILE
+------------------------------------------------------------
+
+User can configure:
+
+Night brightness
+Night temperature
+Night profile
+
+Example:
+
+19:00
+→ Night
+→ 3500K
+→ 70%
+
+------------------------------------------------------------
+AUTOMATIC MODE
+------------------------------------------------------------
+
+The backend continuously monitors the current local system time.
+
+At configured Day Start:
+
+Apply Day Profile.
+
+At configured Night Start:
+
+Apply Night Profile.
+
+This must work even if the main Eyes Care UI is closed.
+
+============================================================
+10. USER-CUSTOM DAY/NIGHT TIMER
+============================================================
+
+User must be able to configure:
+
+Day Start:
+[07:00]
+
+Night Start:
+[19:00]
+
+Allow any valid time.
+
+Support:
+
+- 24-hour format
+- Local Windows timezone
+- Day-specific schedules
+- Weekend schedules
+- Weekday schedules
+
+Example:
+
+Monday-Friday:
+
+07:00 → Office
+12:00 → Reading
+14:00 → Office
+19:00 → Night
+
+Saturday-Sunday:
+
+09:00 → Health
+20:00 → Night
+
+============================================================
+11. ADVANCED SCHEDULER
+============================================================
+
+Create a complete scheduling engine.
+
+User can create unlimited local schedules.
+
+Schedule fields:
+
+- Name
+- Start time
+- End time
+- Days
+- Profile
+- Brightness
+- Temperature
+- Enabled
+- Priority
+- Action
+- Notes
+
+Example:
+
+Schedule:
+"Office Morning"
+
+Days:
+Mon-Fri
+
+Start:
+08:00
+
+Profile:
+Office
+
+Brightness:
+90%
+
+Temperature:
+5000K
+
+============================================================
+12. AUTOMATION PRIORITY ENGINE
+============================================================
+
+Create an Automation Engine.
+
+Priority example:
+
+Priority 1:
+Emergency/manual override
+
+Priority 2:
+Application-specific rule
+
+Priority 3:
+User schedule
+
+Priority 4:
+Auto Day/Night
+
+Priority 5:
+Default profile
+
+Example:
+
+19:00:
+Night Mode
+
+20:00:
+Game.exe starts
+
+→ Gaming profile overrides Night profile.
+
+Game closes:
+
+→ Restore Night profile.
+
+Do NOT simply stack conflicting settings.
+
+Create a proper state/priority system.
+
+============================================================
+13. PRESET PROFILES
+============================================================
+
+Create these default profiles:
+
+1. Pause
+2. Health
+3. Game
+4. Movie
+5. Office
+6. Editing
+7. Reading
+8. Custom
+
+Each profile must contain:
+
+- Brightness
+- Color temperature
+- Day/night behavior
+- Monitor settings
+- Optional focus settings
+- Optional MagicX behavior
+
+Allow users to edit presets.
+
+Allow users to create unlimited custom profiles.
+
+============================================================
+14. BREAK MODULE
+============================================================
+
+Create a complete Break Management System.
+
+Modes:
+
+1. 20-20-20
+2. Pomodoro
+3. Standard
+4. Reading
+5. Office
+6. Gaming
+7. Custom
+
+------------------------------------------------------------
+20-20-20
+------------------------------------------------------------
+
+20 minutes work
+20 seconds rest
+
+------------------------------------------------------------
+POMODORO
+------------------------------------------------------------
+
+25 minutes work
+5 minutes break
+
+------------------------------------------------------------
+STANDARD
+------------------------------------------------------------
+
+50 minutes work
+10 minutes break
+
+------------------------------------------------------------
+CUSTOM
+------------------------------------------------------------
+
+User can configure:
+
+Work duration
+Short break
+Long break
+Long break frequency
+
+============================================================
+15. BREAK TIMER ENGINE
+============================================================
+
+The timer must run from the backend.
+
+Do not depend solely on renderer JavaScript.
+
+Use timestamp-based calculation.
+
+Correct behavior across:
+
+- UI close
+- UI reopen
+- Windows sleep
+- Windows wake
+- System clock changes
+- Backend restart
+
+Persist important state.
+
+The timer must remain accurate.
+
+============================================================
+16. BREAK LOCK SCREEN
+============================================================
+
+Create a full-screen break overlay.
+
+Example:
+
+TIME TO REST
+
+00:18
+
+Look away from your screen.
+Relax your eyes.
+
+Progress bar.
+
+Optional controls depending on enforcement policy.
+
+Features:
+
+- Full screen
+- Multi-monitor support
+- Countdown
+- Custom message
+- Local wallpaper
+- Optional sound
+- Fade animation
+- Smooth transitions
+- Prevent accidental interaction
+- Configurable enforcement
+
+Allow:
+
+Enforced break ON/OFF.
+
+============================================================
+17. SMART PAUSE
+============================================================
+
+Detect user inactivity using local Windows input/activity signals.
+
+Example:
+
+User inactive for configured period.
+
+→ Pause timer.
+
+User returns.
+
+→ Resume timer.
+
+Settings:
+
+Smart Pause:
+ON/OFF
+
+Inactive threshold:
+60 seconds
+
+Resume automatically:
+ON/OFF
+
+Do not collect keystrokes.
+
+Do not record user input.
+
+Only detect activity/inactivity state.
+
+============================================================
+18. USER TIMER MODULE
+============================================================
+
+Create a separate general-purpose timer system.
+
+This is NOT the same as Break Timer.
+
+Users can create custom timers.
+
+Example:
+
+Timer Name:
+Deep Work
+
+Duration:
+01:30:00
+
+After completion:
+
+- Notification
+- Activate profile
+- Start break
+- Pause protection
+- Lock screen
+- Play sound
+- Nothing
+
+Support unlimited timers.
+
+============================================================
+19. USER TIMER PRESETS
+============================================================
+
+Provide:
+
+5 Minutes
+10 Minutes
+15 Minutes
+20 Minutes
+25 Minutes
+30 Minutes
+45 Minutes
+50 Minutes
+60 Minutes
+90 Minutes
+Custom
+
+Allow timer pause/resume/reset.
+
+============================================================
+20. TIMER ENGINE
+============================================================
+
+Create:
+
+TimerEngine
+
+Use timestamp calculations.
+
+Do not simply:
+
+setInterval(() => seconds--)
+
+because this becomes inaccurate during system sleep or event-loop
+delays.
+
+Instead use:
+
+targetTime - currentTime
+
+and calculate remaining duration.
+
+Timer states:
+
+IDLE
+RUNNING
+PAUSED
+COMPLETED
+CANCELLED
+
+============================================================
+21. FOCUS MODULE
+============================================================
+
+Create:
+
+1. Focus Read
+2. Focus Blur
+3. Spotlight Focus
+4. Focus Settings
+
+------------------------------------------------------------
+FOCUS READ
+------------------------------------------------------------
+
+Create an overlay that highlights a reading region and dims
+surrounding areas.
+
+Features:
+
+- Mouse tracking
+- Adjustable width
+- Adjustable height
+- Adjustable opacity
+- Adjustable softness
+- Keyboard controls
+- ESC to exit
+- Global hotkey
+- Smooth movement
+
+------------------------------------------------------------
+FOCUS BLUR
+------------------------------------------------------------
+
+Dim/blur surrounding areas.
+
+Controls:
+
+Blur strength
+Dim strength
+Focus size
+Animation speed
+
+------------------------------------------------------------
+SPOTLIGHT
+------------------------------------------------------------
+
+Create a spotlight region.
+
+The selected region remains clear while the surrounding area is
+darkened.
+
+Support mouse tracking.
+
+============================================================
+22. MAGICX MODULE
+============================================================
+
+Create an original window-enhancement module called:
+
+MagicX
+
+Features:
+
+1. Dark
+2. Grayscale
+3. Dim
+4. Restore
+5. Floating toolbar
+
+Do not copy proprietary implementation.
+
+Use Windows window detection and supported overlay/window mechanisms.
+
+------------------------------------------------------------
+MAGIC TOOLBAR
+------------------------------------------------------------
+
+Example:
+
+[Dark] [Gray] [Dim] [Restore] [X]
+
+Configurable:
+
+- Position
+- Opacity
+- Delay
+- Animation
+- Shortcut
+
+============================================================
+23. APPLICATION RULE ENGINE
+============================================================
+
+Create a real Windows process/application rule engine.
+
+User can configure:
+
+Application:
+Chrome.exe
+
+Action:
+Reading
+
+or:
+
+Application:
+Photoshop.exe
+
+Action:
+Editing
+
+or:
+
+Application:
+Game.exe
+
+Action:
+Game
+
+Rules should trigger when:
+
+Application starts
+Application closes
+
+Rule actions:
+
+- Apply profile
+- Pause protection
+- Enable focus
+- Disable focus
+- Enable MagicX
+- Change brightness
+- Change temperature
+
+============================================================
+24. APPLICATION DETECTION
+============================================================
+
+Backend can monitor Windows process state.
+
+Do NOT collect sensitive user content.
+
+Only use process/application metadata required for rules.
+
+Example events:
+
+APPLICATION_STARTED
+APPLICATION_CLOSED
+
+Do not record:
+
+- Keyboard content
+- Browser history
+- Screenshots
+- Passwords
+- User documents
+
+============================================================
+25. MULTI-MONITOR SYSTEM
+============================================================
+
+Support multiple displays.
+
+Detect:
+
+Monitor ID
+Monitor name
+Resolution
+Primary monitor
+Position
+Capabilities
+Connection status
+
+Each monitor should have:
+
+Brightness
+Temperature
+Profile
+Enabled/disabled
+Sync status
+
+Modes:
+
+Independent
+
+or
+
+Synchronize All Monitors
+
+Example:
+
+Monitor 1:
+100%
+6500K
+
+Monitor 2:
+75%
+4000K
+
+============================================================
+26. MONITOR HOT-PLUG
+============================================================
+
+Detect:
+
+Monitor connected
+Monitor disconnected
+Display configuration changed
+
+When monitor changes:
+
+1. Re-detect
+2. Update capabilities
+3. Reload settings
+4. Apply correct profile
+
+============================================================
+27. WINDOWS SLEEP / WAKE
+============================================================
+
+Before sleep:
+
+Save relevant runtime state.
+
+After resume:
+
+- Reinitialize display engine
+- Re-detect monitors
+- Restore brightness
+- Restore color temperature
+- Restart automation
+- Recalculate timers
+- Restore active profile
+- Update tray status
+
+============================================================
+28. SYSTEM TRAY
+============================================================
+
+Eyes Care must operate primarily as a background utility.
+
+System tray icon:
+
+Eyes Care eye icon.
+
+Tray menu:
+
+Eyes Care
+Status
+
+Display
+    Health
+    Office
+    Reading
+    Game
+    Movie
+    Pause
+
+Brightness
+Temperature
+
+Break Timer
+Take Break Now
+
+User Timer
+
+Auto Day/Night
+
+Focus
+MagicX
+
+Backend Terminal
+
+Open Eyes Care
+Exit
+
+Tray must remain functional even when main UI is closed.
+
+============================================================
+29. WINDOWS STARTUP
+============================================================
+
+CRITICAL REQUIREMENT:
+
+When Windows starts:
+
+Eyes Care Backend must automatically start.
+
+The main UI must NOT automatically appear unless configured.
+
+Startup sequence:
+
+Windows
+ ↓
+Eyes Care Backend
+ ↓
+SQLite
+ ↓
+Display Engine
+ ↓
+Timer Engine
+ ↓
+Automation Engine
+ ↓
+Application Rule Engine
+ ↓
+System Tray
+ ↓
+Ready
+
+Use a reliable Windows startup mechanism.
+
+Provide settings:
+
+Start with Windows:
+ON/OFF
+
+Start minimized:
+ON/OFF
+
+Run backend in background:
+ON/OFF
+
+============================================================
+30. BACKGROUND BACKEND
+============================================================
+
+Create a separate backend runtime.
+
+Recommended architecture:
+
+Electron Main Process
+        |
+        +---- Eyes Care Backend
+        |
+        +---- Renderer UI
+        |
+        +---- System Tray
+        |
+        +---- Native Display Layer
+
+The backend must continue running when the UI window is closed.
+
+Closing UI must NOT terminate the backend.
+
+Only "Exit Eyes Care" from the tray should terminate the complete
+application.
+
+============================================================
+31. BACKEND WATCHDOG
+============================================================
+
+Implement a watchdog.
+
+If backend crashes:
+
+Detect failure.
+
+Restart backend.
+
+Restore state.
+
+Write error to local log.
+
+Prevent infinite restart loops.
+
+Example:
+
+Backend crash
+ ↓
+Watchdog
+ ↓
+Restart
+ ↓
+Verify healthy
+ ↓
+Restore services
+
+If repeated crashes occur:
+
+Enter safe mode and notify the user.
+
+============================================================
+32. BACKEND TERMINAL
+============================================================
+
+Create a separate real-time Backend Terminal window.
+
+This is a first-class developer/diagnostic feature.
+
+Example:
+
+------------------------------------------------------------
+Eyes Care Backend Terminal              ● ONLINE
+------------------------------------------------------------
+
+[09:42:01] INFO    Backend started
+[09:42:01] SUCCESS SQLite connected
+[09:42:02] INFO    Display engine initialized
+[09:42:02] INFO    2 monitors detected
+[09:42:03] SUCCESS Auto Day/Night active
+[09:42:03] SUCCESS Break engine active
+[09:42:03] SUCCESS Timer engine active
+[09:42:04] SUCCESS Application rules active
+[09:42:04] SUCCESS System tray active
+
+>
+
+------------------------------------------------------------
+
+Terminal features:
+
+- Real-time logs
+- Auto-scroll
+- Pause
+- Resume
+- Clear
+- Search
+- Filter
+- INFO
+- SUCCESS
+- WARNING
+- ERROR
+- DEBUG
+- Export logs
+- Copy logs
+- Clear terminal
+
+Do not allow arbitrary shell commands by default.
+
+The terminal is primarily a controlled Eyes Care diagnostic console.
+
+============================================================
+33. BACKEND TERMINAL STATUS
+============================================================
+
+Display:
+
+Backend:
+● ONLINE
+
+Uptime:
+03:42:17
+
+SQLite:
+● CONNECTED
+
+Display Engine:
+● RUNNING
+
+Timer Engine:
+● RUNNING
+
+Break Engine:
+● RUNNING
+
+Automation Engine:
+● RUNNING
+
+Rule Engine:
+● RUNNING
+
+Tray:
+● RUNNING
+
+============================================================
+34. REAL-TIME EVENT BUS
+============================================================
+
+Create a central internal EventBus.
+
+Events:
+
+DISPLAY_CHANGED
+BRIGHTNESS_CHANGED
+TEMPERATURE_CHANGED
+
+PROFILE_CHANGED
+
+DAY_MODE_STARTED
+NIGHT_MODE_STARTED
+
+SCHEDULE_STARTED
+SCHEDULE_COMPLETED
+
+BREAK_STARTED
+BREAK_PAUSED
+BREAK_RESUMED
+BREAK_COMPLETED
+
+USER_TIMER_STARTED
+USER_TIMER_PAUSED
+USER_TIMER_RESUMED
+USER_TIMER_COMPLETED
+
+APPLICATION_STARTED
+APPLICATION_CLOSED
+
+MONITOR_CONNECTED
+MONITOR_DISCONNECTED
+
+SYSTEM_SLEEP
+SYSTEM_RESUME
+
+BACKEND_STARTED
+BACKEND_STOPPED
+BACKEND_RESTARTED
+
+DATABASE_CONNECTED
+DATABASE_ERROR
+
+All UI updates should be event-driven where appropriate.
+
+============================================================
+35. SQLITE DATABASE
+============================================================
+
+Use SQLite.
+
+Create a proper migration system.
+
+Suggested tables:
+
+settings
+profiles
+profile_monitors
+monitors
+day_night_settings
+schedules
+timers
+break_settings
+break_history
+application_rules
+hotkeys
+focus_settings
+magicx_settings
+notifications
+window_settings
+system_settings
+diagnostic_settings
+logs
+
+Use foreign keys where appropriate.
+
+Use indexes for frequently queried data.
+
+Use transactions for multi-step writes.
+
+============================================================
+36. DATABASE RULE
+============================================================
+
+SQLite is for persistent state.
+
+Do NOT use SQLite as a high-frequency real-time event bus.
+
+Do NOT write timer state every second.
+
+Runtime state:
+
+Memory
+
+Persistent changes:
+
+SQLite
+
+Example:
+
+Slider movement
+→ Native display update
+→ Debounce
+→ SQLite
+
+Timer:
+→ Memory/event bus
+→ SQLite only for start/pause/completion/configuration
+
+============================================================
+37. SETTINGS SYSTEM
+============================================================
+
+Create centralized SettingsManager.
+
+All settings must have:
+
+- Default value
+- Validation
+- Type checking
+- Migration support
+- Reset functionality
+
+Settings categories:
+
+General
+Display
+Brightness
+Color Temperature
+Day/Night
+Scheduler
+Break
+Timers
+Focus
+MagicX
+Application Rules
+Hotkeys
+Notifications
+Multi-Monitor
+Backend
+Diagnostics
+Appearance
+Privacy
+
+============================================================
+38. OPTIONS MODULE
+============================================================
+
+General:
+
+Start with Windows
+Start minimized
+Close to tray
+Minimize to tray
+Backend auto-start
+Backend auto-restart
+
+Display:
+
+Default brightness
+Default temperature
+Smooth transition
+Transition speed
+
+Day/Night:
+
+Automatic
+Manual
+Schedule
+Day profile
+Night profile
+
+Break:
+
+Enable
+Work duration
+Short break
+Long break
+Smart pause
+Enforced break
+
+Notifications:
+
+Enable
+Sound
+Volume
+Duration
+
+Focus:
+
+Size
+Opacity
+Blur
+Dim
+Animation
+
+MagicX:
+
+Toolbar
+Position
+Delay
+Opacity
+
+Hotkeys:
+
+Full hotkey manager.
+
+============================================================
+39. GLOBAL HOTKEY SYSTEM
+============================================================
+
+Allow custom global shortcuts.
+
+Examples:
+
+Increase Brightness
+Decrease Brightness
+
+Increase Temperature
+Decrease Temperature
+
+Health Mode
+Office Mode
+Reading Mode
+Game Mode
+Movie Mode
+
+Pause Protection
+
+Take Break Now
+
+Start Timer
+
+Focus Read
+Spotlight
+MagicX
+
+Hotkey recorder:
+
+Press desired key combination.
+
+Validate conflicts.
+
+Do not allow dangerous system shortcuts to be accidentally
+overridden.
+
+============================================================
+40. NOTIFICATION SYSTEM
+============================================================
+
+Create native Windows notifications where supported.
+
+Examples:
+
+"Time to rest your eyes."
+
+"Break completed."
+
+"Night mode activated."
+
+"Your 30-minute timer has finished."
+
+Allow:
+
+- Enable/disable
+- Sound
+- Volume
+- Duration
+- Quiet mode
+
+============================================================
+41. QUIET HOURS
+============================================================
+
+Allow notification suppression.
+
+Example:
+
+Quiet Hours:
+22:00 → 07:00
+
+Break system can still operate while notifications are muted.
+
+============================================================
+42. APPEARANCE
+============================================================
+
+Primary theme:
+
+Modern Dark
+
+Design language:
+
+- Dark charcoal background
+- Dark sidebar
+- Cyan/teal accent
+- Light text
+- Subtle borders
+- Rounded controls
+- Minimal shadows
+- Professional typography
+
+Do not create an overly flashy gaming interface.
+
+This is an eye-care application.
+
+Animations must be subtle and comfortable.
+
+============================================================
+43. ACCESSIBILITY
+============================================================
+
+Support:
+
+- Keyboard navigation
+- Focus indicators
+- Tooltips
+- Screen-reader-friendly labels where possible
+- High contrast considerations
+- Scalable text where practical
+- Reduced motion option
+
+Setting:
+
+Reduce Animations:
+ON/OFF
+
+============================================================
+44. PERFORMANCE
+============================================================
+
+Target a lightweight background experience.
+
+Avoid unnecessary CPU usage.
+
+Do not continuously poll every system API at high frequency.
+
+Use:
+
+- Event-driven architecture
+- Reasonable polling intervals where unavoidable
+- Debouncing
+- Throttling
+- Cached monitor information
+- Efficient process detection
+
+Do not update UI 100 times per second unnecessarily.
+
+Target smooth UI behavior.
+
+============================================================
+45. MEMORY MANAGEMENT
+============================================================
+
+Prevent:
+
+- Event listener leaks
+- Timer leaks
+- IPC listener duplication
+- Window reference leaks
+- Overlay leaks
+- Native resource leaks
+
+When a module is disabled:
+
+Release its resources.
+
+============================================================
+46. ERROR MANAGEMENT
+============================================================
+
+Create:
+
+ErrorManager
+
+Handle:
+
+- Display API failure
+- DDC failure
+- Gamma failure
+- Monitor unavailable
+- SQLite failure
+- IPC failure
+- Native module failure
+- Timer failure
+- Startup failure
+- Permission failure
+- Hotkey conflict
+
+User-facing errors must be understandable.
+
+Do not display raw stack traces to normal users.
+
+Developer logs can contain technical details.
+
+============================================================
+47. SAFE MODE
+============================================================
+
+Create a recovery mode.
+
+If a critical display/native component repeatedly fails:
+
+Start:
+
+Safe Mode
+
+In Safe Mode:
+
+- UI works
+- Settings work
+- Database works
+- Timers work where possible
+- Display native modifications disabled
+
+Allow the user to diagnose the problem.
+
+============================================================
+48. LOGGING
+============================================================
+
+Store logs locally.
+
+Recommended:
+
+%LOCALAPPDATA%\Eyes Care\logs\
+
+Files:
+
+app.log
+backend.log
+display.log
+timer.log
+automation.log
+native.log
+error.log
+
+Rotate logs.
+
+Do not allow unlimited log growth.
+
+============================================================
+49. PRIVACY
+============================================================
+
+Eyes Care must be privacy-first.
+
+Never collect:
+
+- Keyboard text
+- Passwords
+- Screenshots
+- Personal documents
+- Browser history
+- User content
+- Camera
+- Microphone
+
+The application only needs system information required for its
+eye-care and automation functions.
+
+Create a local Privacy page.
+
+============================================================
+50. BACKUP / RESTORE
+============================================================
+
+Provide:
+
+Export Settings
+Import Settings
+Reset Settings
+
+Export:
+
+EyesCareSettings.json
+
+Import must validate schema before modifying the current database.
+
+Create automatic backup before major migrations.
+
+============================================================
+51. DIAGNOSTICS
+============================================================
+
+Create Diagnostics page.
+
+Display:
+
+Windows version
+Electron version
+Node version
+SQLite version
+GPU information where safely available
+Monitor count
+Monitor capabilities
+Backend status
+Native display status
+Timer engine status
+Startup status
+
+Buttons:
+
+Open Logs
+Export Diagnostics
+Test Display
+Test Notification
+Test Timer
+Test Backend
+Reset Display Settings
+
+============================================================
+52. ABOUT PAGE
+============================================================
+
+Display:
+
+Eyes Care
+
+Eye Protection & Productivity
+
+Version X.X.X
+
+Built with:
+
+Electron
+Node.js
+SQLite
+
+Buttons:
+
+Documentation
+Privacy
+Diagnostics
+Open Logs
+License
+
+============================================================
+53. ACTIVATION PAGE
+============================================================
+
+Create an activation module.
+
+However, core offline functionality must NOT depend on online activation.
+
+Allow future offline licensing.
+
+Possible states:
+
+Free
+Trial
+Activated
+Expired
+Invalid
+
+Use an architecture that can later support signed offline licenses.
+
+Do not require a remote license server.
+
+============================================================
+54. WINDOW MANAGEMENT
+============================================================
+
+Main window:
+
+730 × 500
+
+Backend terminal:
+
+900 × 550 approximately
+
+Break lock screen:
+
+Full screen
+
+Focus overlays:
+
+Full screen transparent overlay
+
+Settings dialogs:
+
+Appropriate larger size.
+
+Ensure only one instance of the main application exists.
+
+If user launches Eyes Care twice:
+
+Existing instance should receive focus instead of creating a duplicate.
+
+============================================================
+55. SINGLE INSTANCE
+============================================================
+
+Implement Electron single-instance lock.
+
+Second launch:
+
+→ communicate with existing instance
+→ focus/open existing UI
+→ exit second process
+
+============================================================
+56. PROCESS ARCHITECTURE
+============================================================
+
+Recommended architecture:
+
+                    EYES CARE
+
+                        │
+               Electron Main
+                        │
+        ┌───────────────┼────────────────┐
+        │               │                │
+        ▼               ▼                ▼
+     Renderer         Tray           Backend
+        │                                │
+        │                         ┌──────┼──────┐
+        │                         │      │      │
+        │                       Timer  Display Rules
+        │                         │      │      │
+        │                         └──────┼──────┘
+        │                                │
+        │                             EventBus
+        │                                │
+        └──────────── Secure IPC ────────┘
+                                         │
+                                      SQLite
+                                         │
+                                  Native Windows Layer
+
+============================================================
+57. SECURE ELECTRON ARCHITECTURE
+============================================================
+
+Use:
+
+contextIsolation: true
+
+nodeIntegration: false
+
+Secure preload.js
+
+Expose only controlled APIs.
+
+Example:
+
+window.eyesCare.display
+window.eyesCare.timer
+window.eyesCare.break
+window.eyesCare.settings
+window.eyesCare.backend
+window.eyesCare.system
+
+Never expose unrestricted Node.js APIs to renderer.
+
+============================================================
+58. IPC SECURITY
+============================================================
+
+Use explicit allowlisted channels.
+
+Examples:
+
+display:getMonitors
+display:setBrightness
+display:setTemperature
+
+timer:start
+timer:pause
+timer:resume
+timer:stop
+
+break:start
+break:pause
+break:resume
+
+settings:get
+settings:set
+
+backend:getStatus
+backend:getLogs
+
+Do not create generic:
+
+execute(command)
+
+IPC endpoints.
+
+============================================================
+59. BACKEND API
+============================================================
+
+Create a clean internal backend service API.
+
+Conceptually:
+
+DisplayService
+TimerService
+BreakService
+SchedulerService
+AutomationService
+RuleService
+FocusService
+MagicXService
+NotificationService
+MonitorService
+StartupService
+TrayService
+LogService
+DatabaseService
+WatchdogService
+
+Each service must have a clear responsibility.
+
+Avoid a giant main.js file.
+
+============================================================
+60. FOLDER STRUCTURE
+============================================================
+
+Use a professional structure such as:
+
+Eyes-Care/
+│
+├── package.json
+├── package-lock.json
+├── README.md
+├── LICENSE
+├── CHANGELOG.md
+├── electron-builder.yml
+│
+├── src/
+│   │
+│   ├── main/
+│   │   ├── main.js
+│   │   ├── app-lifecycle.js
+│   │   ├── window-manager.js
+│   │   ├── tray-manager.js
+│   │   ├── ipc-manager.js
+│   │   ├── startup-manager.js
+│   │   └── single-instance.js
+│   │
+│   ├── backend/
+│   │   ├── backend.js
+│   │   ├── backend-manager.js
+│   │   ├── watchdog.js
+│   │   ├── event-bus.js
+│   │   ├── timer-engine.js
+│   │   ├── break-engine.js
+│   │   ├── scheduler-engine.js
+│   │   ├── automation-engine.js
+│   │   ├── rule-engine.js
+│   │   ├── notification-engine.js
+│   │   └── logger.js
+│   │
+│   ├── native/
+│   │   └── windows/
+│   │       ├── display-manager
+│   │       ├── monitor-manager
+│   │       ├── brightness-manager
+│   │       ├── color-manager
+│   │       └── window-manager
+│   │
+│   ├── database/
+│   │   ├── database.js
+│   │   ├── migrations/
+│   │   ├── schema.sql
+│   │   └── repositories/
+│   │
+│   ├── preload/
+│   │   └── preload.js
+│   │
+│   └── renderer/
+│       ├── index.html
+│       ├── css/
+│       ├── js/
+│       ├── components/
+│       └── assets/
+│
+├── scripts/
+│   ├── build-native.js
+│   ├── prepare-runtime.js
+│   └── package-windows.js
+│
+├── native/
+│   └── windows/
+│
+├── tests/
+│
+└── build/
+
+Keep modules separated.
+
+============================================================
+61. UI COMPONENT SYSTEM
+============================================================
+
+Create reusable components:
+
+SidebarItem
+Slider
+Toggle
+PresetButton
+ProfileCard
+TimerCard
+ScheduleCard
+MonitorCard
+RuleCard
+Modal
+Toast
+Notification
+Dropdown
+Tooltip
+ContextMenu
+HotkeyRecorder
+StatusIndicator
+ProgressBar
+TerminalLine
+SettingsSection
+ColorTemperatureSlider
+BrightnessSlider
+
+All components should have:
+
+Default
+Hover
+Active
+Pressed
+Disabled
+Focus
+
+states.
+
+============================================================
+62. MAIN DISPLAY UI
+============================================================
+
+Recreate the compact visual structure:
+
+Top:
+
+Color Temperature slider
+
+Second:
+
+Brightness slider
+
+Then:
+
+Auto Day/Night
+
+Then:
+
+Preset grid
+
+Presets:
+
+Pause
+Health
+Game
+Movie
+Office
+Editing
+Reading
+Custom
+
+Bottom:
+
+Contextual description/status.
+
+Use approximately the same visual density as the supplied reference.
+
+============================================================
+63. REAL-TIME UI
+============================================================
+
+When backend changes brightness:
+
+UI updates immediately.
+
+When schedule changes profile:
+
+UI updates.
+
+When night mode activates:
+
+UI updates.
+
+When timer changes:
+
+UI updates.
+
+When monitor disconnects:
+
+UI updates.
+
+When backend crashes:
+
+UI displays:
+
+Backend Offline
+
+When backend restarts:
+
+UI updates:
+
+Backend Online
+
+============================================================
+64. REAL-TIME STATUS INDICATORS
+============================================================
+
+Use subtle status indicators.
+
+Examples:
+
+● Active
+● Running
+● Connected
+● Paused
+● Disabled
+● Warning
+● Error
+
+Do not rely only on color.
+
+Use icons/text as well for accessibility.
+
+============================================================
+65. PROFILE ENGINE
+============================================================
+
+Profiles should be objects/configurations.
+
+Example concept:
+
+{
+    name: "Health",
+    brightness: 80,
+    temperature: 4000,
+    enabled: true
+}
+
+Profiles can be:
+
+- Activated manually
+- Activated by schedule
+- Activated by application rule
+- Activated by timer
+- Activated by Day/Night
+
+============================================================
+66. STATE MANAGEMENT
+============================================================
+
+Create a centralized application state model.
+
+Track:
+
+Current profile
+Current brightness
+Current temperature
+Current day/night mode
+Current timer
+Current break
+Backend state
+Monitor state
+Active rules
+Focus state
+MagicX state
+
+Avoid duplicated state across renderer and backend.
+
+Backend remains authoritative for system state.
+
+============================================================
+67. TIME MANAGEMENT
+============================================================
+
+Use local Windows system time.
+
+Handle:
+
+- Midnight
+- Daylight saving time
+- Windows timezone changes
+- System sleep
+- System resume
+- Manual clock changes
+
+Schedulers should recalculate after time-related system events.
+
+============================================================
+68. DAY/NIGHT EDGE CASES
+============================================================
+
+Test:
+
+23:59 → 00:00
+
+Night crossing midnight
+
+Day schedule disabled
+
+Night schedule disabled
+
+User changes timezone
+
+Windows wakes at night
+
+Computer starts during night
+
+Computer starts during day
+
+Monitor connects after startup
+
+User manually overrides automatic mode
+
+Manual override expires
+
+============================================================
+69. MANUAL OVERRIDE
+============================================================
+
+If Auto Day/Night is active and user manually changes:
+
+Brightness
+Temperature
+Profile
+
+provide a configurable behavior:
+
+Option A:
+Temporary override
+
+Option B:
+Keep manual change
+
+Option C:
+Return at next schedule transition
+
+Recommended:
+
+Temporary override until next scheduled transition.
+
+============================================================
+70. APPLICATION RULE EDGE CASES
+============================================================
+
+If multiple applications are running:
+
+Example:
+
+Chrome:
+Reading
+
+Photoshop:
+Editing
+
+Game:
+Gaming
+
+Use priority.
+
+Allow user to configure priority.
+
+When highest-priority app closes:
+
+Return to next applicable rule.
+
+When no rules remain:
+
+Return to schedule/day-night/default state.
+
+============================================================
+71. DISPLAY FAILURE RECOVERY
+============================================================
+
+If a native display operation fails:
+
+Do not crash the application.
+
+Log error.
+
+Try fallback method.
+
+If fallback fails:
+
+Notify user.
+
+Preserve the user's saved configuration.
+
+Never corrupt SQLite.
+
+============================================================
+72. DATABASE MIGRATIONS
+============================================================
+
+Create versioned migrations.
+
+Example:
+
+Migration 001
+Initial database
+
+Migration 002
+Add schedules
+
+Migration 003
+Add application rules
+
+Migration 004
+Add multi-monitor
+
+Never destroy user settings during an update.
+
+============================================================
+73. APPLICATION UPDATES
+============================================================
+
+Initial application should remain fully functional offline.
+
+Do not make online update checks a core dependency.
+
+Structure the project so future updates can be added safely.
+
+============================================================
+74. WINDOWS INSTALLER
+============================================================
+
+Build a professional Windows installer.
+
+Target:
+
+Windows 10
+Windows 11
+
+Provide:
+
+EyesCare-Setup-x.x.x.exe
+
+Installer features:
+
+- Install
+- Start with Windows option
+- Desktop shortcut optional
+- Start Menu shortcut
+- Uninstall
+- Proper application data directories
+
+Also provide a portable build if practical.
+
+============================================================
+75. UNINSTALLATION
+============================================================
+
+Uninstaller should properly remove:
+
+Application files
+Startup entry
+Shortcuts
+
+Ask user whether to remove local settings/logs.
+
+Do not silently destroy user configuration.
+
+============================================================
+76. TESTING
+============================================================
+
+Create a real test strategy.
+
+Unit tests:
+
+- Timer calculations
+- Scheduler
+- Profile engine
+- Priority engine
+- Settings validation
+- Database repositories
+
+Integration tests:
+
+- Backend ↔ SQLite
+- Backend ↔ Electron
+- IPC
+- Tray
+- Startup
+- Display engine
+
+Manual Windows tests:
+
+- Windows startup
+- Sleep
+- Wake
+- Monitor connect
+- Monitor disconnect
+- Multiple monitors
+- Brightness
+- Color temperature
+- Timer
+- Break lock
+- Focus overlay
+- Application rules
+- Tray
+- Backend restart
+
+============================================================
+77. PERFORMANCE TESTING
+============================================================
+
+Measure:
+
+Startup time
+Idle CPU
+Idle RAM
+Timer accuracy
+UI responsiveness
+Display adjustment latency
+Backend stability
+
+Check for memory leaks.
+
+Run the application for:
+
+1 hour
+8 hours
+24 hours
+
+without UI crashes.
+
+============================================================
+78. OFFLINE TEST
+============================================================
+
+Disable Internet.
+
+Start application.
+
+Everything must still work:
+
+Display
+Brightness
+Temperature
+Profiles
+Day/Night
+Schedules
+Break
+Timer
+Focus
+MagicX
+Tray
+Backend
+SQLite
+Logs
+Startup
+
+No feature should suddenly become unusable.
+
+============================================================
+79. CRASH RECOVERY TEST
+============================================================
+
+Simulate backend crash.
+
+Expected:
+
+Watchdog detects it.
+
+Backend restarts.
+
+State restored.
+
+Tray remains functional.
+
+UI updates.
+
+No database corruption.
+
+============================================================
+80. SECURITY TESTING
+============================================================
+
+Verify:
+
+Renderer cannot directly access Node.js.
+
+IPC cannot execute arbitrary commands.
+
+Settings are validated.
+
+Imported JSON is validated.
+
+Paths are sanitized.
+
+Log injection is handled.
+
+Native helper execution is restricted.
+
+No secrets are embedded unnecessarily.
+
+============================================================
+81. USER EXPERIENCE
+============================================================
+
+The application must be simple for normal users.
+
+Advanced functionality should be available without making the
+main Display screen complicated.
+
+Main screen should remain:
+
+Clean
+Compact
+Simple
+Professional
+
+Advanced configuration goes into:
+
+Options
+Advanced dialogs
+Backend Terminal
+Diagnostics
+
+============================================================
+82. UI COPY
+============================================================
+
+Use professional natural English.
+
+Examples:
+
+"Automatically switches based on time."
+
+"Provides comfortable colors for long sessions."
+
+"Time to rest your eyes."
+
+"Night mode activated."
+
+"Backend is running."
+
+Avoid awkward AI-generated wording.
+
+============================================================
+83. NO FAKE FEATURES
+============================================================
+
+Absolutely do not create buttons that only show:
+
+"Coming Soon"
+
+unless the feature genuinely cannot be implemented in the current
+environment.
+
+If a feature cannot be fully supported on certain hardware,
+implement capability detection and explain the limitation.
+
+Example:
+
+"Hardware brightness control is unavailable for this monitor.
+Eyes Care is using software display adjustment."
+
+============================================================
+84. NO PLACEHOLDER CODE
+============================================================
+
+Do not leave:
+
+TODO
+FIXME
+Coming Soon
+Dummy function
+Fake API
+Mock backend
+Fake timer
+Fake display control
+
+in the production build.
+
+If a component is incomplete, continue implementing it.
+
+============================================================
+85. DOCUMENTATION
+============================================================
+
+Create:
+
+README.md
+
+Include:
+
+- Features
+- Architecture
+- Installation
+- Development
+- Build instructions
+- Native Windows dependencies
+- SQLite structure
+- Troubleshooting
+- Display-control limitations
+- Security model
+- Offline architecture
+
+Also create:
+
+ARCHITECTURE.md
+
+DATABASE.md
+
+WINDOWS-DISPLAY.md
+
+TROUBLESHOOTING.md
+
+============================================================
+86. DEVELOPMENT WORKFLOW
+============================================================
+
+Do NOT attempt to write the entire application blindly in one file.
+
+Follow this sequence:
+
+PHASE 1
+Project foundation
+
+PHASE 2
+Electron window + UI shell
+
+PHASE 3
+SQLite
+
+PHASE 4
+Backend process
+
+PHASE 5
+EventBus
+
+PHASE 6
+System tray
+
+PHASE 7
+Windows startup
+
+PHASE 8
+Display/native engine
+
+PHASE 9
+Profiles
+
+PHASE 10
+Auto Day/Night
+
+PHASE 11
+Scheduler
+
+PHASE 12
+Break engine
+
+PHASE 13
+User Timer
+
+PHASE 14
+Focus
+
+PHASE 15
+MagicX
+
+PHASE 16
+Application rules
+
+PHASE 17
+Hotkeys
+
+PHASE 18
+Notifications
+
+PHASE 19
+Backend Terminal
+
+PHASE 20
+Watchdog
+
+PHASE 21
+Diagnostics
+
+PHASE 22
+Backup/restore
+
+PHASE 23
+Security hardening
+
+PHASE 24
+Testing
+
+PHASE 25
+Packaging
+
+============================================================
+87. AFTER EACH PHASE
+============================================================
+
+After completing each phase:
+
+1. Run the application.
+2. Test the feature.
+3. Check console errors.
+4. Check backend logs.
+5. Check SQLite.
+6. Check IPC.
+7. Check memory leaks.
+8. Fix problems.
+9. Continue only after the phase is stable.
+
+Do not accumulate known errors.
+
+============================================================
+88. FINAL QUALITY REQUIREMENT
+============================================================
+
+The finished application must feel like a professional commercial
+Windows desktop utility.
+
+It must have:
+
+- Beautiful UI
+- Compact layout
+- Smooth interactions
+- Real native functionality
+- Real background backend
+- Real SQLite database
+- Real timers
+- Real automation
+- Real display management
+- Real monitor support
+- Real system tray
+- Real Windows startup
+- Real crash recovery
+- Real logging
+- Real diagnostics
+- Real offline operation
+
+============================================================
+89. FINAL MAIN WINDOW REQUIREMENT
+============================================================
+
+The main dashboard must preserve the compact visual character of the
+provided reference screenshot:
+
+Approximately:
+
+730 × 500 px
+
+Sidebar:
+
+Approximately 145px
+
+Dark background.
+
+Cyan/teal active controls.
+
+Main Display page:
+
+Color Temperature
+Brightness
+Auto Day/Night
+Day/Night
+Preset grid
+
+The final application name must always be:
+
+                        Eyes Care
+
+============================================================
+90. FINAL ACCEPTANCE CRITERIA
+============================================================
+
+The project is considered COMPLETE only when ALL of the following
+work:
+
+[ ] Application launches successfully
+[ ] Main UI is approximately 730×500
+[ ] Display module works
+[ ] Brightness control works where supported
+[ ] Color temperature works through supported native/fallback method
+[ ] Monitor detection works
+[ ] Multi-monitor works
+[ ] Profiles work
+[ ] Health works
+[ ] Office works
+[ ] Reading works
+[ ] Game works
+[ ] Movie works
+[ ] Editing works
+[ ] Custom profiles work
+[ ] Pause works
+[ ] Auto Day/Night works
+[ ] User Day/Night schedule works
+[ ] Advanced scheduler works
+[ ] Break timer works
+[ ] 20-20-20 works
+[ ] Pomodoro works
+[ ] Custom break works
+[ ] Break lock screen works
+[ ] Smart pause works
+[ ] User timer works
+[ ] Focus Read works
+[ ] Focus Blur works
+[ ] Spotlight works
+[ ] MagicX works
+[ ] Application rules work
+[ ] Global hotkeys work
+[ ] Notifications work
+[ ] System tray works
+[ ] Main UI can close while backend remains active
+[ ] Backend terminal works
+[ ] Backend logs are real-time
+[ ] Backend watchdog works
+[ ] Windows startup works
+[ ] SQLite persistence works
+[ ] Sleep/wake recovery works
+[ ] Monitor hot-plug recovery works
+[ ] Settings backup works
+[ ] Settings restore works
+[ ] Diagnostics works
+[ ] Privacy architecture works
+[ ] No Internet required
+[ ] No cloud dependency
+[ ] No fake functionality
+[ ] No placeholder production code
+[ ] No critical console errors
+[ ] No major memory leaks
+[ ] Windows installer builds
+[ ] Uninstaller works
+[ ] Application survives long-running background operation
+
+============================================================
+91. FINAL DEVELOPMENT PRINCIPLE
+============================================================
+
+BUILD THE REAL APPLICATION.
+
+Do not stop after creating the interface.
+
+Do not replace native Windows functionality with fake UI effects.
+
+Do not simulate timers.
+
+Do not simulate backend status.
+
+Do not simulate system tray.
+
+Do not simulate startup.
+
+Do not simulate monitor detection.
+
+Do not create fake terminal logs.
+
+Everything shown to the user must correspond to a real underlying
+system.
+
+When Windows or specific monitor hardware does not support a feature,
+detect that capability and use the safest available fallback.
+
+Prioritize:
+
+1. Stability
+2. Safety
+3. Correctness
+4. Offline operation
+5. Performance
+6. Security
+7. UX
+8. Visual polish
+
+============================================================
+92. FINAL DELIVERABLES
+============================================================
+
+Deliver:
+
+1. Complete source code
+2. package.json
+3. SQLite schema
+4. Database migrations
+5. Electron main process
+6. Secure preload
+7. Renderer UI
+8. Backend engine
+9. Native Windows integration
+10. Display engine
+11. Timer engine
+12. Break engine
+13. Scheduler engine
+14. Automation engine
+15. Application rule engine
+16. Focus engine
+17. MagicX engine
+18. System tray
+19. Windows startup
+20. Backend watchdog
+21. Backend terminal
+22. Logging
+23. Diagnostics
+24. Backup/restore
+25. Tests
+26. README
+27. Architecture documentation
+28. Windows installer
+29. Portable build if possible
+
+Final application:
+
+                         EYES CARE
+
+A professional, offline-first, Windows eye-care and productivity
+utility that starts with Windows, runs its backend continuously in
+the background, automatically controls configured display settings,
+manages Day/Night schedules, timers and breaks, provides Focus and
+MagicX tools, responds to application rules, supports multiple
+monitors, and provides a real-time backend terminal and diagnostics
+system.
+
+Application Active Key = @Nuttertools123
+Application Trial = 15 Days
+Application in Trial Showing 15Days remaining in Trial Message in Activate Tab. 
+Application Auto Run in Background after Winodws starts. And working in Background.
+
+Eyes Care has following modules in Side Bar.
+1. Display
+2. Break
+3. Focus
+4. MagicX
+5. Options
+6. About
+7. Activate
+
+Each Module is independent and should run in Background when needed. 

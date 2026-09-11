@@ -1,0 +1,181 @@
+/* ============================================================
+   Display Module Styles
+   ============================================================ */
+
+/* Monitor Badge */
+.monitor-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--accent-color);
+  background: var(--accent-subtle);
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-glow);
+}
+
+/* Temperature gradient indicator */
+.temp-gradient-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #FF6B35 0%, #FFD700 30%, #FFFFFF 60%, #AAD8FF 100%);
+  margin-top: 6px;
+  opacity: 0.5;
+  border-radius: var(--radius-pill);
+}
+
+/* Preset Grid */
+.presets-section {
+  margin-bottom: 10px;
+}
+
+.presets-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.presets-section-title {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.presets-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.preset-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--t-normal);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.preset-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent-gradient);
+  opacity: 0;
+  transition: opacity var(--t-normal);
+}
+
+.preset-card:hover {
+  border-color: rgba(0,210,220,0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.preset-card.active {
+  border-color: var(--accent-color);
+  background: var(--accent-subtle);
+  box-shadow: 0 0 0 1px var(--accent-color), var(--shadow-accent);
+}
+
+.preset-card.active::before {
+  opacity: 0.05;
+}
+
+.preset-emoji {
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.preset-name {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  position: relative;
+  z-index: 1;
+}
+
+.preset-card.active .preset-name {
+  color: var(--accent-color);
+}
+
+.preset-desc-tiny {
+  font-size: 8.5px;
+  color: var(--text-muted);
+  position: relative;
+  z-index: 1;
+  line-height: 1.2;
+}
+
+/* Day/Night Bar */
+.day-night-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  transition: border-color var(--t-normal);
+}
+
+.day-night-row:hover {
+  border-color: rgba(0,210,220,0.2);
+}
+
+.day-night-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.day-night-icon-wrap {
+  font-size: 18px;
+  animation: spin-slow 20s linear infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.day-night-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.day-night-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.day-night-schedule {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Display capability hint */
+.display-cap-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}

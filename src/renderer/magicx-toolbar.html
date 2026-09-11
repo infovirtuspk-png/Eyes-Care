@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MagicX Toolbar</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+    body {
+      width: 100vw;
+      height: 100vh;
+      background: transparent;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .toolbar-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(23, 25, 27, 0.95);
+      border: 1px solid rgba(0, 206, 209, 0.4);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6), 0 0 12px rgba(0, 206, 209, 0.2);
+      border-radius: 30px;
+      padding: 6px 10px;
+      -webkit-app-region: drag;
+    }
+    .tool-btn {
+      -webkit-app-region: no-drag;
+      background: #2A2F34;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #FFF;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+    }
+    .tool-btn:hover {
+      background: #343A3F;
+      border-color: #00CED1;
+    }
+    .tool-btn.active {
+      background: #00CED1;
+      color: #000;
+      font-weight: 700;
+    }
+    .close-tool-btn {
+      -webkit-app-region: no-drag;
+      background: transparent;
+      border: none;
+      color: #808A93;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+    .close-tool-btn:hover {
+      background: #E74C3C;
+      color: #FFF;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar-pill">
+    <button class="tool-btn" data-filter="dark">🌙 Dark</button>
+    <button class="tool-btn" data-filter="gray">🔘 Gray</button>
+    <button class="tool-btn" data-filter="dim">🕶 Dim</button>
+    <button class="tool-btn active" data-filter="none">☀ Restore</button>
+    <button class="close-tool-btn" id="btn-close-magicx" title="Close Toolbar">✕</button>
+  </div>
+  <script src="js/magicx-toolbar.js"></script>
+</body>
+</html>

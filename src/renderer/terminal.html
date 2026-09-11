@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eyes Care - Backend Diagnostic Terminal</title>
+  <link rel="stylesheet" href="css/terminal.css">
+</head>
+<body class="terminal-body">
+  <!-- Top Header -->
+  <div class="terminal-header">
+    <div class="terminal-title-group">
+      <span style="font-size: 16px;">⚡</span>
+      <span class="terminal-title">Eyes Care Backend Terminal</span>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <button class="filter-btn" id="btn-export-logs">Export Logs</button>
+      <button class="filter-btn" id="btn-open-dir">Open Folder</button>
+      <button class="filter-btn" id="btn-clear-logs">Clear</button>
+    </div>
+  </div>
+
+  <!-- Real-time Status Indicators -->
+  <div class="terminal-status-indicators">
+    <div class="status-pill"><span class="status-label">Backend:</span> <span class="status-val" id="stat-backend">● ONLINE</span></div>
+    <div class="status-pill"><span class="status-label">Uptime:</span> <span class="status-val" id="stat-uptime">00:00:00</span></div>
+    <div class="status-pill"><span class="status-label">SQLite:</span> <span class="status-val" id="stat-sqlite">● CONNECTED</span></div>
+    <div class="status-pill"><span class="status-label">Display Engine:</span> <span class="status-val" id="stat-display">● RUNNING</span></div>
+    <div class="status-pill"><span class="status-label">Break Engine:</span> <span class="status-val" id="stat-break">● RUNNING</span></div>
+    <div class="status-pill"><span class="status-label">Timer Engine:</span> <span class="status-val" id="stat-timer">● RUNNING</span></div>
+    <div class="status-pill"><span class="status-label">Rules:</span> <span class="status-val" id="stat-rules">● RUNNING</span></div>
+    <div class="status-pill"><span class="status-label">Tray:</span> <span class="status-val" id="stat-tray">● RUNNING</span></div>
+  </div>
+
+  <!-- Filter & Search Toolbar -->
+  <div class="terminal-toolbar">
+    <div class="filter-btn-group">
+      <button class="filter-btn active" data-lvl="ALL">ALL</button>
+      <button class="filter-btn" data-lvl="INFO">INFO</button>
+      <button class="filter-btn" data-lvl="SUCCESS">SUCCESS</button>
+      <button class="filter-btn" data-lvl="WARN">WARN</button>
+      <button class="filter-btn" data-lvl="ERROR">ERROR</button>
+      <button class="filter-btn" data-lvl="DEBUG">DEBUG</button>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <input type="text" class="terminal-search" id="input-terminal-search" placeholder="Filter console logs...">
+      <label style="display: flex; align-items: center; gap: 4px; font-size: 11px; cursor: pointer;">
+        <input type="checkbox" id="chk-autoscroll" checked> Auto-scroll
+      </label>
+    </div>
+  </div>
+
+  <!-- Terminal Output Stream -->
+  <div class="terminal-logs-container" id="terminal-logs-container">
+    <!-- Stream lines injected here -->
+  </div>
+
+  <!-- Footer -->
+  <div class="terminal-footer">
+    <span id="terminal-count-text">Displaying 0 log entries</span>
+    <span style="color: #00CED1;">Eyes Care Diagnostic Engine v1.0.0</span>
+  </div>
+
+  <script src="js/terminal.js"></script>
+</body>
+</html>

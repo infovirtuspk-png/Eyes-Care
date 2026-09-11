@@ -1,0 +1,107 @@
+/* ============================================================
+   MagicX Module Styles
+   ============================================================ */
+
+/* MagicX Hero Banner */
+.magicx-hero {
+  background: linear-gradient(135deg, rgba(0,210,220,0.08) 0%, rgba(124,58,237,0.08) 100%);
+  border: 1px solid rgba(0,210,220,0.15);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.magicx-hero::before {
+  content: '✨';
+  position: absolute;
+  right: 16px;
+  font-size: 48px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.magicx-hero-text h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.magicx-hero-text p {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Filter Grid */
+.magicx-filters-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.magicx-filter-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 6px 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--t-normal);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.magicx-filter-btn:hover {
+  border-color: rgba(0,210,220,0.3);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.magicx-filter-btn.active {
+  background: var(--accent-subtle);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  box-shadow: 0 0 0 1px var(--accent-color);
+}
+
+.magicx-filter-icon {
+  font-size: 20px;
+  transition: transform var(--t-normal);
+}
+
+.magicx-filter-btn:hover .magicx-filter-icon,
+.magicx-filter-btn.active .magicx-filter-icon {
+  transform: scale(1.15);
+}
+
+/* Options card */
+.magicx-options-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+}
+
+/* Toolbar status indicator */
+.magicx-toolbar-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}

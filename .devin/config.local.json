@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Exec(npm approve-scripts)",
+      "Exec(npm start)",
+      "Exec(npm install)",
+      "Exec(npx)",
+      "Exec(Remove-Item)"
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "name": "eyes-care",
+  "version": "1.0.0",
+  "description": "Eye Protection & Productivity Desktop Application",
+  "main": "src/main/main.js",
+  "author": "Eyes Care",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:portable": "electron-builder --win portable"
+  },
+  "devDependencies": {
+    "electron": "^14.2.9",
+    "electron-builder": "^22.14.13"
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0",
+    "sql.js": "^1.10.3"
+  },
+  "build": {
+    "appId": "com.eyescare.app",
+    "productName": "Eyes Care",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "**/sql-wasm.wasm",
+      "**/*.wasm"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "src/renderer/assets/icons/icon.ico",
+      "artifactName": "${productName}-Setup-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Eyes Care",
+      "installerIcon": "src/renderer/assets/icons/icon.ico",
+      "uninstallerIcon": "src/renderer/assets/icons/icon.ico"
+    },
+    "portable": {
+      "artifactName": "${productName}-Portable-${version}.${ext}"
+    }
+  },
+  "allowScripts": {
+    "electron@14.2.9": true
+  }
+}

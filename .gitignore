@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build output
+build/
+dist/
+*.exe
+*.msi
+*.zip
+
+# Electron
+out/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Assets (if using placeholder assets)
+src/renderer/assets/icons/*.png
+src/renderer/assets/icons/*.ico
+src/renderer/assets/icons/*.jpg
+src/renderer/assets/images/*
+src/renderer/assets/sounds/*

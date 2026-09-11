@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eyes Care – Professional Eye Protection &amp; Productivity</title>
+  <meta name="description"
+    content="Eyes Care: Offline eye-care, break management, focus tools, display control, and automation for Windows.">
+  <!-- Google Fonts - Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <!-- Module Styles -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/display.css">
+  <link rel="stylesheet" href="css/break.css">
+  <link rel="stylesheet" href="css/focus.css">
+  <link rel="stylesheet" href="css/magicx.css">
+  <link rel="stylesheet" href="css/options.css">
+  <link rel="stylesheet" href="css/about.css">
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- ══════════════ TITLE BAR ══════════════ -->
+    <div class="title-bar" id="title-bar">
+      <div class="title-bar-left">
+        <div class="app-logo-wrap">👁</div>
+        <span class="app-title">Eyes Care</span>
+        <span class="app-version-tag">v1.0</span>
+        <span class="header-status-pill trial" id="header-license-badge">Trial</span>
+      </div>
+      <div class="title-bar-right">
+        <button class="title-btn terminal-btn" id="btn-terminal-quick" title="Open Backend Diagnostic Terminal">
+          <span class="title-btn-icon">⚡</span> Terminal
+        </button>
+        <button class="title-btn" id="btn-help" title="About Eyes Care">
+          <span class="title-btn-icon">ℹ</span>
+        </button>
+        <button class="title-btn" id="btn-minimize" title="Minimize to Tray">
+          <span class="title-btn-icon">─</span>
+        </button>
+        <button class="title-btn close-btn" id="btn-close" title="Close to Tray (backend continues running)">
+          <span class="title-btn-icon">✕</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ══════════════ MAIN CONTENT ══════════════ -->
+    <div class="main-content">
+
+      <!-- ── SIDEBAR (145px) ── -->
+      <div class="sidebar">
+        <nav class="sidebar-menu" role="navigation" aria-label="Module navigation">
+          <div class="sidebar-item active" data-page="display" id="nav-display" tabindex="0" role="button"
+            aria-label="Display module">
+            <span class="sidebar-icon">🖥️</span>
+            <span class="sidebar-label">Display</span>
+          </div>
+          <div class="sidebar-item" data-page="break" id="nav-break" tabindex="0" role="button"
+            aria-label="Break module">
+            <span class="sidebar-icon">⏳</span>
+            <span class="sidebar-label">Break</span>
+          </div>
+          <div class="sidebar-item" data-page="focus" id="nav-focus" tabindex="0" role="button"
+            aria-label="Focus module">
+            <span class="sidebar-icon">🎯</span>
+            <span class="sidebar-label">Focus</span>
+          </div>
+          <div class="sidebar-item" data-page="magicx" id="nav-magicx" tabindex="0" role="button"
+            aria-label="MagicX module">
+            <span class="sidebar-icon">✨</span>
+            <span class="sidebar-label">MagicX</span>
+          </div>
+          <div class="sidebar-item" data-page="options" id="nav-options" tabindex="0" role="button"
+            aria-label="Options module">
+            <span class="sidebar-icon">⚙️</span>
+            <span class="sidebar-label">Options</span>
+          </div>
+          <div class="sidebar-item" data-page="about" id="nav-about" tabindex="0" role="button" aria-label="About">
+            <span class="sidebar-icon">ℹ️</span>
+            <span class="sidebar-label">About</span>
+          </div>
+          <div class="sidebar-item" data-page="activate" id="nav-activate" tabindex="0" role="button"
+            aria-label="License Activation">
+            <span class="sidebar-icon">🔑</span>
+            <span class="sidebar-label">Activate</span>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <button class="sidebar-backend-btn" id="sidebar-terminal-btn" title="Open Backend Diagnostic Terminal">
+            <span class="live-dot"></span>
+            Backend Live
+          </button>
+        </div>
+      </div>
+
+      <!-- ── CONTENT AREA ── -->
+      <div class="content-area" id="content-area">
+
+        <!-- ════════════════════════════════════════════
+           DISPLAY MODULE
+           ════════════════════════════════════════════ -->
+        <div class="page active" id="page-display" role="main" aria-label="Display Calibration">
+
+          <div class="page-header">
+            <div class="page-title-group">
+              <h1 class="page-title">
+                <span class="page-title-icon">🖥️</span>
+                Display Calibration
+              </h1>
+              <p class="page-subtitle">Real Windows GDI gamma &amp; hardware brightness control</p>
+            </div>
+            <div class="monitor-badge" id="monitor-count-badge">
+              <span class="status-dot"></span>
+              <span id="monitor-badge-text">1 Display Active</span>
+            </div>
+          </div>
+
+          <!-- Color Temperature -->
+          <div class="slider-group">
+            <div class="slider-header">
+              <span class="slider-title">🌡️ Color Temperature</span>
+              <span class="slider-value" id="disp-temp-val">6500K</span>
+            </div>
+            <div class="slider-track-wrap">
+              <span class="slider-label-text">🔴 Warm</span>
+              <input type="range" id="slider-temperature" min="1000" max="10000" step="100" value="6500"
+                aria-label="Color Temperature">
+              <span class="slider-label-text right">Cool 🔵</span>
+            </div>
+            <div class="temp-gradient-bar"></div>
+          </div>
+
+          <!-- Brightness -->
+          <div class="slider-group">
+            <div class="slider-header">
+              <span class="slider-title">☀️ Brightness</span>
+              <span class="slider-value" id="disp-bright-val">100%</span>
+            </div>
+            <div class="slider-track-wrap">
+              <span class="slider-label-text">Dimmer</span>
+              <input type="range" id="slider-brightness" min="10" max="100" step="1" value="100"
+                aria-label="Brightness">
+              <span class="slider-label-text right">Brighter</span>
+            </div>
+          </div>
+
+          <!-- Auto Day / Night -->
+          <div class="day-night-row" id="day-night-row">
+            <div class="day-night-info">
+              <span class="day-night-icon-wrap" id="day-night-icon">🌓</span>
+              <div class="day-night-texts">
+                <div class="day-night-title">Auto Day / Night Transition</div>
+                <div class="day-night-schedule" id="day-night-summary-text">Day (6500K / 100%) → Night (3500K / 70%)
+                </div>
+              </div>
+            </div>
+            <label class="switch" aria-label="Auto Day Night Toggle">
+              <input type="checkbox" id="toggle-autodaynight">
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+
+          <!-- Preset Grid -->
+          <div class="presets-section">
+            <div class="presets-section-header">
+              <span class="presets-section-title">🎨 Preset Modes</span>
+              <button class="btn btn-outline btn-sm" id="btn-reset-display" title="Reset to defaults">↺ Reset</button>
+            </div>
+            <div class="presets-grid">
+              <div class="preset-card" data-preset="Pause" id="preset-Pause" tabindex="0">
+                <span class="preset-emoji">⏸</span>
+                <span class="preset-name">Pause</span>
+                <span class="preset-desc-tiny">6500K 100%</span>
+              </div>
+              <div class="preset-card" data-preset="Health" id="preset-Health" tabindex="0">
+                <span class="preset-emoji">❤️</span>
+                <span class="preset-name">Health</span>
+                <span class="preset-desc-tiny">4000K 80%</span>
+              </div>
+              <div class="preset-card" data-preset="Office" id="preset-Office" tabindex="0">
+                <span class="preset-emoji">💼</span>
+                <span class="preset-name">Office</span>
+                <span class="preset-desc-tiny">5000K 85%</span>
+              </div>
+              <div class="preset-card" data-preset="Reading" id="preset-Reading" tabindex="0">
+                <span class="preset-emoji">📖</span>
+                <span class="preset-name">Reading</span>
+                <span class="preset-desc-tiny">3500K 70%</span>
+              </div>
+              <div class="preset-card" data-preset="Game" id="preset-Game" tabindex="0">
+                <span class="preset-emoji">🎮</span>
+                <span class="preset-name">Game</span>
+                <span class="preset-desc-tiny">6000K 100%</span>
+              </div>
+              <div class="preset-card" data-preset="Movie" id="preset-Movie" tabindex="0">
+                <span class="preset-emoji">🎬</span>
+                <span class="preset-name">Movie</span>
+                <span class="preset-desc-tiny">4500K 60%</span>
+              </div>
+              <div class="preset-card" data-preset="Editing" id="preset-Editing" tabindex="0">
+                <span class="preset-emoji">🎨</span>
+                <span class="preset-name">Editing</span>
+                <span class="preset-desc-tiny">6500K 90%</span>
+              </div>
+              <div class="preset-card" data-preset="Custom" id="preset-Custom" tabindex="0">
+                <span class="preset-emoji">⚙️</span>
+                <span class="preset-name">Custom</span>
+                <span class="preset-desc-tiny">Your settings</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="display-cap-bar">
+            <span class="status-dot" id="display-status-dot"></span>
+            <span id="display-capability-text">GDI Gamma Ramp Calibration Active</span>
+          </div>
+        </div>
+
+        <!-- ════════════════════════════════════════════
+           BREAK MODULE
+           ════════════════════════════════════════════ -->
+        <div class="page" id="page-break" role="main" aria-label="Break Management">
+
+          <div class="page-header">
+            <div class="page-title-group">
+              <h1 class="page-title">
+                <span class="page-title-icon">⏳</span>
+                Break Management
+              </h1>
+              <p class="page-subtitle">Scientifically proven eye-strain protection cycles (20-20-20 Rule)</p>
+            </div>
+          </div>
+
+          <!-- Mode Tabs -->
+          <div class="break-mode-tabs" role="tablist">
+            <button class="break-mode-btn active" data-breakmode="20-20-20" role="tab"
+              aria-selected="true">20-20-20</button>
+            <button class="break-mode-btn" data-breakmode="pomodoro" role="tab">Pomodoro</button>
+            <button class="break-mode-btn" data-breakmode="standard" role="tab">Standard</button>
+            <button class="break-mode-btn" data-breakmode="custom" role="tab">Custom</button>
+          </div>
+
+          <!-- Timer Card -->
+          <div class="break-timer-card">
+            <div class="break-timer-status" id="break-status-label">NEXT REST IN</div>
+            <div class="break-countdown" id="break-countdown-display">20:00</div>
+            <div class="break-progress-bar-wrap">
+              <div class="break-progress-bar" id="break-progress-bar"></div>
+            </div>
+            <div class="break-controls-row">
+              <button class="btn btn-primary" id="btn-break-toggle">⏸ Pause</button>
+              <button class="btn btn-secondary" id="btn-break-now">☕ Take Break Now</button>
+              <button class="btn btn-outline" id="btn-break-reset">↺ Reset</button>
+            </div>
+          </div>
+
+          <!-- Settings Grid -->
+          <div class="break-settings-grid">
+            <div class="break-setting-card">
+              <span class="break-setting-label">Work Duration</span>
+              <div class="break-setting-value">
+                <input type="number" id="inp-break-work-min" class="break-num-input" min="1" max="180" value="20"
+                  aria-label="Work minutes">
+                <span class="break-setting-unit">min</span>
+              </div>
+            </div>
+            <div class="break-setting-card">
+              <span class="break-setting-label">Rest Duration</span>
+              <div class="break-setting-value">
+                <input type="number" id="inp-break-rest-sec" class="break-num-input" min="5" max="600" value="20"
+                  aria-label="Rest seconds">
+                <span class="break-setting-unit">sec</span>
+              </div>
+            </div>
+            <div class="break-setting-card">
+              <span class="break-setting-label">Smart Inactivity Pause</span>
+              <div class="break-setting-toggle">
+                <span style="font-size:10px;color:var(--text-muted);">Auto-pause if idle</span>
+                <label class="switch" aria-label="Smart Pause">
+                  <input type="checkbox" id="toggle-smart-pause" checked>
+                  <span class="slider-toggle"></span>
+                </label>
+              </div>
+            </div>
+            <div class="break-setting-card">
+              <span class="break-setting-label">Full-Screen Lock</span>
+              <div class="break-setting-toggle">
+                <span style="font-size:10px;color:var(--text-muted);">Enforced break screen</span>
+                <label class="switch" aria-label="Enforced Break">
+                  <input type="checkbox" id="toggle-enforced-break">
+                  <span class="slider-toggle"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ════════════════════════════════════════════
+           FOCUS MODULE
+           ════════════════════════════════════════════ -->
+        <div class="page" id="page-focus" role="main" aria-label="Focus Tools">
+
+          <div class="page-header">
+            <div class="page-title-group">
+              <h1 class="page-title">
+                <span class="page-title-icon">🎯</span>
+                Focus &amp; Reading Tools
+              </h1>
+              <p class="page-subtitle">Visual aids for concentrated reading and reduced eye-glare</p>
+            </div>
+          </div>
+
+          <!-- Focus Mode Cards -->
+          <div class="focus-modes-grid">
+            <div class="focus-card active" data-focusmode="read" id="focus-mode-read" tabindex="0">
+              <span class="focus-icon">📖</span>
+              <div class="focus-mode-title">Reading Ruler</div>
+              <div class="focus-mode-desc">Clear horizontal reading band</div>
+            </div>
+            <div class="focus-card" data-focusmode="spotlight" id="focus-mode-spotlight" tabindex="0">
+              <span class="focus-icon">🔦</span>
+              <div class="focus-mode-title">Spotlight</div>
+              <div class="focus-mode-desc">Circular cursor spotlight</div>
+            </div>
+            <div class="focus-card" data-focusmode="blur" id="focus-mode-blur" tabindex="0">
+              <span class="focus-icon">🌫️</span>
+              <div class="focus-mode-title">Focus Blur</div>
+              <div class="focus-mode-desc">Dims peripheral distractions</div>
+            </div>
+          </div>
+
+          <!-- Sliders -->
+          <div class="focus-sliders-card">
+            <div class="slider-group" style="margin-bottom:8px; border:none; background:transparent; padding: 4px 0;">
+              <div class="slider-header">
+                <span class="slider-title">Band / Spotlight Size</span>
+                <span class="slider-value" id="focus-size-val">140px</span>
+              </div>
+              <input type="range" id="slider-focus-size" min="60" max="400" step="10" value="140"
+                aria-label="Focus Size">
+            </div>
+            <div class="slider-group" style="margin-bottom:0; border:none; background:transparent; padding: 4px 0;">
+              <div class="slider-header">
+                <span class="slider-title">Surrounding Dim Opacity</span>
+                <span class="slider-value" id="focus-opacity-val">65%</span>
+              </div>
+              <input type="range" id="slider-focus-opacity" min="10" max="95" step="5" value="65"
+                aria-label="Dim Opacity">
+            </div>
+          </div>
+
+          <button class="btn btn-primary focus-activate-btn" id="btn-toggle-focus-overlay" aria-live="polite">
+            🎯 Activate Focus Overlay
+          </button>
+        </div>
+
+        <!-- ════════════════════════════════════════════
+           MAGICX MODULE
+           ════════════════════════════════════════════ -->
+        <div class="page" id="page-magicx" role="main" aria-label="MagicX Window Enhancement">
+
+          <div class="page-header">
+            <div class="page-title-group">
+              <h1 class="page-title">
+                <span class="page-title-icon">✨</span>
+                MagicX Enhancement
+              </h1>
+              <p class="page-subtitle">Instant visual shaders &amp; floating desktop toolbar</p>
+            </div>
+          </div>
+
+          <!-- Hero Banner -->
+          <div class="magicx-hero">
+            <div class="magicx-hero-text">
+              <h3>Floating Quick-Access Toolbar</h3>
+              <p>Pinnable desktop overlay with one-click dark invert, grayscale, and night-dim visual shaders. Stays
+                always-on-top across all apps.</p>
+            </div>
+          </div>
+
+          <!-- Filter Buttons -->
+          <div class="magicx-filters-grid">
+            <div class="magicx-filter-btn" data-filter="dark" id="filter-dark" tabindex="0">
+              <span class="magicx-filter-icon">🌙</span>
+              <span>Dark Invert</span>
+            </div>
+            <div class="magicx-filter-btn" data-filter="gray" id="filter-gray" tabindex="0">
+              <span class="magicx-filter-icon">🔘</span>
+              <span>Grayscale</span>
+            </div>
+            <div class="magicx-filter-btn" data-filter="dim" id="filter-dim" tabindex="0">
+              <span class="magicx-filter-icon">🕶️</span>
+              <span>Night Dim</span>
+            </div>
+            <div class="magicx-filter-btn active" data-filter="none" id="filter-none" tabindex="0">
+              <span class="magicx-filter-icon">☀️</span>
+              <span>Restore</span>
+            </div>
+          </div>
+
+          <!-- Toolbar Toggle -->
+          <div class="magicx-options-card">
+            <div class="options-row" style="padding-bottom:0;">
+              <div class="options-row-left">
+                <span class="options-row-title">Floating Toolbar Window</span>
+                <span class="options-row-desc">Shows an always-on-top widget on the Windows desktop for quick
+                  access</span>
+              </div>
+              <button class="btn btn-primary" id="btn-toggle-magicx-toolbar">Toggle Toolbar</button>
+            </div>
+            <div class="magicx-toolbar-status" id="magicx-toolbar-status">
+              <span class="status-dot muted" id="magicx-toolbar-dot"></span>
+              <span id="magicx-toolbar-status-text">Toolbar is closed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ════════════════════════════════════════════
+           OPTIONS MODULE
+           ════════════════════════════════════════════ -->
+        <div class="page" id="page-options" role="main" aria-label="Options">
+
+          <div class="page-header" style="margin-bottom:10px;">
+            <div class="page-title-group">
+              <h1 class="page-title">
+                <span class="page-title-icon">⚙️</span>
+                Options
+              </h1>
+              <p class="page-subtitle">Schedules, timers, rules, hotkeys &amp; backup</p>
+            </div>
+          </div>
+
+          <!-- Tab Bar -->
+          <div class="options-tab-bar" role="tablist">
+            <button class="opt-tab-btn active" data-opttab="general" role="tab">General</button>
+            <button class="opt-tab-btn" data-opttab="schedules" role="tab">Schedules</button>
+            <button class="opt-tab-btn" data-opttab="timers" role="tab">Timers</button>
+            <button class="opt-tab-btn" data-opttab="rules" role="tab">App Rules</button>
+            <button class="opt-tab-btn" data-opttab="hotkeys" role="tab">Hotkeys</button>
+            <button class="opt-tab-btn" data-opttab="backup" role="tab">Backup</button>
+          </div>
+
+          <!-- General Tab -->
+          <div class="opt-tab-content active" id="opttab-general" role="tabpanel">
+            <div class="options-group">
+              <div class="options-row">
+                <div class="options-row-left">
+                  <span class="options-row-title">Start with Windows</span>
+                  <span class="options-row-desc">Automatically launch Eyes Care backend at boot</span>
+                </div>
+                <label class="switch" aria-label="Start with Windows">
+                  <input type="checkbox" id="opt-start-windows" checked>
+                  <span class="slider-toggle"></span>
+                </label>
+              </div>
+              <div class="options-row">
+                <div class="options-row-left">
+                  <span class="options-row-title">Close Window to Tray</span>
+                  <span class="options-row-desc">Keep backend service active in system tray</span>
+                </div>
+                <label class="switch" aria-label="Close to Tray">
+                  <input type="checkbox" id="opt-close-tray" checked>
+                  <span class="slider-toggle"></span>
+                </label>
+              </div>
+              <div class="options-row">
+                <div class="options-row-left">
+                  <span class="options-row-title">Smooth Color Transitions</span>
+                  <span class="options-row-desc">Gradually fade temperature &amp; brightness adjustments</span>
+                </div>
+                <label class="switch" aria-label="Smooth Transitions">
+                  <input type="checkbox" id="opt-smooth-trans" checked>
+                  <span class="slider-toggle"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Schedules Tab -->
+          <div class="opt-tab-content" id="opttab-schedules" role="tabpanel">
+            <div class="options-group">
+              <div class="options-group-header">
+                <span class="options-group-title">Advanced Schedulers</span>
+                <button class="btn btn-primary btn-sm" id="btn-add-schedule">+ New Schedule</button>
+              </div>
+              <table class="data-table" aria-label="Schedules list">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Time</th>
+                    <th>Days</th>
+                    <th>Profile</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="schedules-tbody">
+                  <tr class="data-table-empty-row">
+                    <td colspan="5" class="data-table-empty">No schedules configured</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Timers Tab -->
+          <div class="opt-tab-content" id="opttab-timers" role="tabpanel">
+            <div class="options-group">
+              <div class="options-group-header">
+                <span class="options-group-title">Custom Timers</span>
+                <button class="btn btn-primary btn-sm" id="btn-add-timer">+ New Timer</button>
+              </div>
+              <table class="data-table" aria-label="Timers list">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Duration</th>
+                    <th>Action</th>
+                    <th>Control</th>
+                  </tr>
+                </thead>
+                <tbody id="timers-tbody">
+                  <tr class="data-table-empty-row">
+                    <td colspan="4" class="data-table-empty">No timers configured</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- App Rules Tab -->
+          <div class="opt-tab-content" id="opttab-rules" role="tabpanel">
+            <div class="options-group">
+              <div class="options-group-header">
+                <span class="options-group-title">Application Rules</span>
+                <button class="btn btn-primary btn-sm" id="btn-add-rule">+ New Rule</button>
+              </div>
+              <table class="data-table" aria-label="App Rules list">
+                <thead>
+                  <tr>
+                    <th>App</th>
+                    <th>Executable</th>
+                    <th>Profile</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="rules-tbody">
+                  <tr class="data-table-empty-row">
+                    <td colspan="4" class="data-table-empty">No app rules configured</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Hotkeys Tab -->
+          <div class="opt-tab-content" id="opttab-hotkeys" role="tabpanel">
+            <div class="options-group">
+              <div class="options-group-header">
+                <span class="options-group-title">Global Keyboard Shortcuts</span>
+              </div>
+              <table class="data-table" aria-label="Hotkeys list">
+                <thead>
+                  <tr>
+                    <th>Action</th>
+                    <th>Shortcut</th>
+                  </tr>
+                </thead>
+                <tbody id="hotkeys-tbody">
+                  <tr class="data-table-empty-row">
+                    <td colspan="2" class="data-table-empty">Loading hotkeys...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Backup Tab -->
+          <div class="opt-tab-content" id="opttab-backup" role="tabpanel">
+            <div class="options-group">
+              <div class="options-row">
+                <div class="options-row-left">
+                  <span class="options-row-title">Export Settings</span>
+                  <span class="options-row-desc">Save all profiles, schedules &amp; rules to JSON</span>
+                </div>
+                <button class="btn btn-secondary" id="btn-export-settings">📤 Export</button>
+              </div>
+              <div class="options-row">
+                <div class="options-row-left">
+                  <span class="options-row-title">Import Settings</span>
+                  <span class="options-row-desc">Restore settings from a backup JSON file</span>
+                </div>
+                <button class="btn btn-secondary" id="btn-import-settings">📥 Import</button>
+              </div>
+              <div class="options-row">
+                <div class="options-row-left">
+                  <span class="options-row-title">Reset to Defaults</span>
+                  <span class="options-row-desc">Restore all original factory calibration defaults</span>
+                </div>
+                <button class="btn btn-danger" id="btn-reset-all">🗑️ Reset All</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ════════════════════════════════════════════
+           ABOUT MODULE
+           ════════════════════════════════════════════ -->
+        <div class="page" id="page-about" role="main" aria-label="About Eyes Care">
+
+          <div class="about-logo-wrap">
+            <span class="about-logo-emoji" role="img" aria-label="Eyes Care Logo">👁️</span>
+            <div class="about-app-name">Eyes Care</div>
+            <p class="about-tagline">Professional Offline Eye-Protection &amp; Productivity Utility</p>
+            <div class="about-version-row">
+              <span class="badge badge-accent">v1.0.0</span>
+              <span class="badge badge-success">✓ Production</span>
+              <span class="badge badge-accent">Windows 10/11</span>
+            </div>
+          </div>
+
+          <div class="about-features">
+            <div class="about-feature-item">
+              <span class="about-feature-check">✔</span>
+              100% Offline — local SQLite persistence, zero cloud
+            </div>
+            <div class="about-feature-item">
+              <span class="about-feature-check">✔</span>
+              Real Windows GDI gamma &amp; WMI brightness control
+            </div>
+            <div class="about-feature-item">
+              <span class="about-feature-check">✔</span>
+              Background watchdog with self-healing &amp; crash recovery
+            </div>
+            <div class="about-feature-item">
+              <span class="about-feature-check">✔</span>
+              20-20-20, Pomodoro, custom break lock engine
+            </div>
+            <div class="about-feature-item">
+              <span class="about-feature-check">✔</span>
+              Win32 GetLastInputInfo smart inactivity detection
+            </div>
+            <div class="about-feature-item">
+              <span class="about-feature-check">✔</span>
+              Auto Day/Night, App Rules, &amp; multi-schedule engine
+            </div>
+          </div>
+
+          <div class="about-actions-row">
+            <button class="btn btn-primary" id="btn-open-terminal-about">⚡ Backend Terminal</button>
+            <button class="btn btn-secondary" id="btn-open-logs-dir">📁 Open Logs Folder</button>
+          </div>
+        </div>
+
+        <!-- ════════════════════════════════════════════
+           ACTIVATE MODULE
+           ════════════════════════════════════════════ -->
+        <div class="page" id="page-activate" role="main" aria-label="License Activation">
+
+          <div class="page-header">
+            <div class="page-title-group">
+              <h1 class="page-title">
+                <span class="page-title-icon">🔑</span>
+                License &amp; Activation
+              </h1>
+              <p class="page-subtitle">100% offline activation — no internet or server required</p>
+            </div>
+          </div>
+
+          <div class="activate-card">
+
+            <!-- Status Row -->
+            <div class="activate-status-row">
+              <span class="activate-status-badge trial" id="lic-status-badge">
+                ⏳ 15 Days remaining in Trial
+              </span>
+              <div class="activate-machine-id">
+                Machine ID: <strong id="lic-machine-id">—</strong>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <p class="activate-desc" id="lic-days-text">
+              You are running the <strong>15-day full-feature trial</strong>. All offline display calibration, break
+              management, focus, and background automation features are fully active.
+            </p>
+
+            <!-- Activation Key Input -->
+            <label class="activate-key-label" for="inp-license-key">Enter License Activation Key:</label>
+            <div class="activate-input-row">
+              <input type="text" id="inp-license-key" class="activate-key-input" placeholder="e.g. 1234...."
+                autocomplete="off" spellcheck="false" aria-label="License Key">
+              <button class="btn btn-primary" id="btn-activate-license" style="padding: 7px 16px;">
+                🔓 Activate
+              </button>
+            </div>
+            <p class="activate-key-hint">
+              Offline master key: <span class="activate-key-code">12345...</span>
+            </p>
+          </div>
+
+        </div>
+
+      </div><!-- /.content-area -->
+    </div><!-- /.main-content -->
+  </div><!-- /.app-container -->
+
+  <!-- ══════════════ TOAST CONTAINER ══════════════ -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- ══════════════ MODAL OVERLAY ══════════════ -->
+  <div class="modal-overlay" id="modal-overlay" style="display:none;" role="dialog" aria-modal="true">
+    <div class="modal-box" id="modal-box">
+      <div class="modal-title" id="modal-title">Input</div>
+      <div class="modal-body" id="modal-body"></div>
+      <input type="text" class="modal-input" id="modal-input" autocomplete="off">
+      <div class="modal-actions">
+        <button class="btn btn-outline" id="modal-cancel">Cancel</button>
+        <button class="btn btn-primary" id="modal-ok">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SCRIPTS ══════════════ -->
+  <script src="js/app.js"></script>
+  <script src="js/display.js"></script>
+  <script src="js/break.js"></script>
+  <script src="js/focus.js"></script>
+  <script src="js/magicx.js"></script>
+  <script src="js/options.js"></script>
+</body>
+
+</html>

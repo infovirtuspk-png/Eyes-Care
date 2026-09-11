@@ -1,0 +1,32 @@
+appId: com.eyescare.app
+productName: Eyes Care
+directories:
+  output: dist
+files:
+  - src/**/*
+  - package.json
+asar: true
+asarUnpack:
+  - "**/sql-wasm.wasm"
+  - "**/*.wasm"
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: portable
+      arch:
+        - x64
+  icon: src/renderer/assets/icons/icon.ico
+  artifactName: "${productName}-Setup-${version}-${arch}.${ext}"
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Eyes Care
+  installerIcon: src/renderer/assets/icons/icon.ico
+  uninstallerIcon: src/renderer/assets/icons/icon.ico
+  perMachine: false
+portable:
+  artifactName: "${productName}-Portable-${version}.${ext}"

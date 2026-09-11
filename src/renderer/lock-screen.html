@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eyes Care - Break Lock Screen</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+    body {
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at center, #1A1F24 0%, #0B0D0F 100%);
+      color: #FFF;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .lock-card {
+      background: rgba(32, 36, 39, 0.85);
+      border: 1px solid rgba(0, 206, 209, 0.3);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 206, 209, 0.15);
+      border-radius: 20px;
+      padding: 40px 60px;
+      text-align: center;
+      max-width: 550px;
+      animation: pulse 4s infinite alternate;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.015); }
+    }
+    .lock-icon {
+      font-size: 48px;
+      color: #00CED1;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 0 16px rgba(0, 206, 209, 0.5));
+    }
+    .lock-title {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .lock-subtitle {
+      font-size: 14px;
+      color: #9BA4AD;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .lock-countdown {
+      font-size: 64px;
+      font-weight: 800;
+      color: #00CED1;
+      letter-spacing: 2px;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 20px;
+      text-shadow: 0 0 24px rgba(0, 206, 209, 0.4);
+    }
+    .progress-bar-wrap {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #00CED1, #1AE4E7);
+      transition: width 1s linear;
+    }
+    .lock-tips {
+      font-size: 12.5px;
+      color: #7D8893;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .btn-skip {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #9BA4AD;
+      padding: 8px 24px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-skip:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFF;
+      border-color: #00CED1;
+    }
+  </style>
+</head>
+<body>
+  <div class="lock-card">
+    <div class="lock-icon">👁</div>
+    <h1 class="lock-title">TIME TO REST YOUR EYES</h1>
+    <p class="lock-subtitle">Look away from your screen at an object 20 feet away to relax your eye muscles.</p>
+
+    <div class="lock-countdown" id="lock-timer-text">00:20</div>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="lock-progress-fill"></div>
+    </div>
+
+    <div class="lock-tips" id="lock-tip-text">"Blink slowly and take deep breaths."</div>
+
+    <div id="skip-container">
+      <button class="btn-skip" id="btn-skip-break">Skip Break</button>
+    </div>
+  </div>
+
+  <script src="js/lock-screen.js"></script>
+</body>
+</html>
