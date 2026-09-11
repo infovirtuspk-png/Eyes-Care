@@ -9,6 +9,8 @@
 [![Framework: Electron](https://img.shields.io/badge/Framework-Electron-9FE349.svg)](https://www.electronjs.org/)
 [![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-green.svg)](https://github.com/infovirtuspk-png/Eyes-Care)
 
+[![Download Eyes Care](https://img.shields.io/badge/Download-Setup.exe-brightgreen.svg?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/infovirtuspk-png/Eyes-Care/releases/download/1.0.0/Eyes.Care-Setup-1.0.0-x64.exe)
+
 ---
 
 ## Table of Contents
