@@ -38,7 +38,8 @@
 - [🤝 Contributing](#-contributing)
 - [📄 License & Privacy](#-license--privacy)
 - [🆘 Support](#-support)
-- [🗺️ Roadmap](#️-roadmap)
+- [🗺️ Roadmap](️-roadmap)
+- [👨‍💻 About Developer](#-about-developer)
 - [🙏 Acknowledgments](#-acknowledgments)
 
 ---
@@ -860,7 +861,72 @@ For security vulnerabilities or sensitive issues:
 
 ---
 
-## 🙏 Acknowledgments
+## �‍💻 About Developer
+
+<div align="center">
+
+### 🚀 Qasim Ahmad
+**Epic Developer and Programmer**
+
+👨‍💻 **Full-Stack Developer** | 🎯 **Software Engineer** | 💡 **Problem Solver**
+
+---
+
+### 📧 Contact Information
+
+**📧 Email:** [info.virtuspk@gmail.com](mailto:info.virtuspk@gmail.com)
+
+**🌐 GitHub:** [infovirtuspk-png](https://github.com/infovirtuspk-png)
+
+---
+
+### 💼 Skills & Expertise
+
+- **🖥️ Desktop Application Development** - Electron, Node.js, Windows API
+- **🌐 Web Development** - HTML5, CSS3, JavaScript, Modern Frameworks
+- **🗄️ Database Management** - SQLite, SQL, Data Modeling
+- **🔧 System Integration** - Windows APIs, Native Modules, System Services
+- **🎨 UI/UX Design** - User Interface Design, User Experience Optimization
+- **⚡ Performance Optimization** - Code Optimization, Resource Management
+- **🔒 Security Implementation** - Secure Coding, Data Protection
+- **🧪 Testing & Debugging** - Unit Testing, Integration Testing, Debugging
+
+---
+
+### 🎯 Mission
+
+Creating innovative software solutions that enhance productivity, protect user health, and respect privacy. Believing in open-source development and building tools that make a real difference in people's digital lives.
+
+---
+
+### 💡 Philosophy
+
+> "Code with purpose, build with passion, and always prioritize the user experience."
+
+---
+
+### 🏆 Achievements
+
+- 🥇 **Eyes Care** - Comprehensive eye protection and productivity suite
+- 🎯 **Full-Stack Development** - End-to-end application development
+- 🛡️ **Privacy-First Approach** - Building offline-first, privacy-respecting applications
+- 🌍 **Open Source Advocate** - Contributing to the developer community
+
+---
+
+### 🤝 Let's Connect
+
+Feel free to reach out for:
+- 💼 **Collaboration** - Open to interesting projects and partnerships
+- 🐛 **Bug Reports** - Report issues or suggest improvements
+- 💡 **Feature Requests** - Ideas for new features or enhancements
+- 📚 **Knowledge Sharing** - Technical discussions and best practices
+
+---
+
+</div>
+
+## �🙏 Acknowledgments
 
 ### 🛠️ Built With
 
@@ -899,6 +965,8 @@ For security vulnerabilities or sensitive issues:
 <div align="center">
 
 **Made with ❤️ for your eyes and productivity**
+
+**Developed by 👨‍💻 [Qasim Ahmad](mailto:info.virtuspk@gmail.com)**
 
 [⬆ Back to Top](#-eyes-care)
 
